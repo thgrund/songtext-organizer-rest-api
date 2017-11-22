@@ -20,4 +20,5 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 /* Router configuration */
-app.use(require('./app/routes/Router'));
+const REST_API_ROOT = '/api';
+app.use(REST_API_ROOT, require('./app/routes/Router'));
