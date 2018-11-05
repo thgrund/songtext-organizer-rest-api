@@ -74,7 +74,7 @@ class Common {
             let stmt = database.db.prepare(sqlRequest);
             stmt.run(sqlParams, function (err) {
                 if (this.changes === 1) {
-                    resolve(true);
+                    resolve(this.lastID);
                 } else if (this.changes === 0) {
                     reject(
                         new DaoError(21, "Entity not found")
@@ -82,7 +82,7 @@ class Common {
                 } else {
                     console.log(err);
                     reject(
-                        new DaoError(11, "Invalid arguments")
+                        new DaoError(11, "Invalid arguments" + sqlRequest)
                     )
                 }
             })
