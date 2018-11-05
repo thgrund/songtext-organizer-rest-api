@@ -11,21 +11,6 @@ let db = new sqlite3.Database('./sqlite.db');
 /* Init car and driver tables if they don't exist */
 let init = function () {
 
-db.run("CREATE TABLE if not exists car (" +
-        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        " maker TEXT," +
-        " model TEXT," +
-        " year INT," +
-        " driver INT" +
-        ")");
-
-    db.run("CREATE TABLE if not exists driver (" +
-        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        " firstName TEXT," +
-        " lastName TEXT," +
-        " car INT" +
-        ")");
-
    db.run("CREATE TABLE if not exists song ( " +
       "id	INTEGER PRIMARY KEY AUTOINCREMENT," +
       "theme_id INTEGER," +
