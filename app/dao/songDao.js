@@ -19,13 +19,13 @@ class SongDao {
      * @return entity
      */
     findById(id) {
-        let sqlRequest = "SELECT id, themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords FROM song WHERE id=$id";
+        let sqlRequest = "SELECT id, themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords, songStateId FROM song WHERE id=$id";
         let sqlParams = {$id: id};
         return this.common.findOne(sqlRequest, sqlParams).then(row =>
             new Song(row.id, row.themeId, row.title,
                 row.poeticReferencePicture, row.songtext,
                 row.themeContentRelated, row.themeDetailed,
-                row.rhymingScheme, row.chords));
+                row.rhymingScheme, row.chords, row.songStateId));
     };
 
     /**
@@ -39,7 +39,7 @@ class SongDao {
             for (const row of rows) {
                 songs.push(new Song(row.id, row.themeId, row.title,
                     row.poeticReferencePicture, row.songtext,
-                    row.themeContentRelated, row.themeDetailed, row.rhymingScheme, row.chords));
+                    row.themeContentRelated, row.themeDetailed, row.rhymingScheme, row.chords, row.songStateId));
             }
             return songs;
         });
@@ -68,7 +68,8 @@ class SongDao {
             "themeContentRelated=$themeContentRelated, " +
             "themeDetailed=$themeDetailed, " +
             "rhymingScheme=$rhymingScheme, " +
-            "chords=$chords " +
+            "chords=$chords, " +
+            "songStateId=$songStateId " +
             "WHERE id=$songId";
 
         let sqlParams = {
@@ -80,7 +81,8 @@ class SongDao {
             $themeContentRelated: Song.themeContentRelated,
             $themeDetailed: Song.themeDetailed,
             $rhymingScheme: Song.rhymingScheme,
-            $chords: Song.chords
+            $chords: Song.chords,
+            $songStateId: Song.songStateId
         };
         return this.common.run(sqlRequest, sqlParams);
     };
@@ -91,8 +93,8 @@ class SongDao {
      * returns database insertion status
      */
     create(Song) {
-        let sqlRequest = "INSERT into song (themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords) " +
-            "VALUES ($themeId, $title, $poeticReferencePicture, $songtext, $themeContentRelated, $themeDetailed, $rhymingScheme, $chords)";
+        let sqlRequest = "INSERT into song (themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords, songStateId) " +
+            "VALUES ($themeId, $title, $poeticReferencePicture, $songtext, $themeContentRelated, $themeDetailed, $rhymingScheme, $chords, $songStateId)";
         let sqlParams = {
           $themeId: Song.themeId,
           $title: Song.title,
@@ -101,8 +103,8 @@ class SongDao {
           $themeContentRelated: Song.themeContentRelated,
           $themeDetailed: Song.themeDetailed,
           $rhymingScheme: Song.rhymingScheme,
-          $chords: Song.chords
-
+          $chords: Song.chords,
+          $songStateId: Song.songStateId
         };
         return this.common.run(sqlRequest, sqlParams);
     };
@@ -113,8 +115,8 @@ class SongDao {
      * returns database insertion status
      */
     createWithId(Song) {
-        let sqlRequest = "INSERT into song (id, themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords) " +
-            "VALUES ($id, $themeId, $title, $poeticReferencePicture, $songtext, $themeContentRelated, $themeDetailed, $rhymingScheme, $chords)";
+        let sqlRequest = "INSERT into song (id, themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords, songStateId) " +
+            "VALUES ($id, $themeId, $title, $poeticReferencePicture, $songtext, $themeContentRelated, $themeDetailed, $rhymingScheme, $chords, $songStateId)";
         let sqlParams = {
             $id: Song.id,
           $themeId: Song.themeId,
@@ -124,7 +126,8 @@ class SongDao {
           $themeContentRelated: Song.themeContentRelated,
           $themeDetailed: Song.themeDetailed,
           $rhymingScheme: Song.rhymingScheme,
-          $chords: Song.chords
+          $chords: Song.chords,
+          $songStateId: Song.songStateId
         };
         return this.common.run(sqlRequest, sqlParams);
     };

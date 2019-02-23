@@ -9,5 +9,6 @@ const router = express.Router();
 // router.use('/driver', require('./api/driverRoutes'));
 router.use('/song', require('./api/songRoutes'));
 router.use('/theme', require('./api/themeRoutes'));
+router.use('/songState', require('./api/songStateRoutes'));
 
 module.exports = router;

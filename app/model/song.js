@@ -3,7 +3,7 @@
  */
 
 class Song {
-    constructor(songId, themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords) {
+    constructor(songId, themeId, title, poeticReferencePicture, songtext, themeContentRelated, themeDetailed, rhymingScheme, chords, songStateId) {
       this.songId = songId;
       this.themeId = themeId;
       this.title = title;
@@ -13,6 +13,7 @@ class Song {
       this.themeDetailed = themeDetailed;
       this.rhymingScheme = rhymingScheme;
       this.chords = chords;
+      this.songStateId = songStateId;
     }
 }
 

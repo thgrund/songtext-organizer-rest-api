@@ -67,6 +67,7 @@ class SongController {
         song.themeDetailed = req.body.themeDetailed;
         song.rhymingScheme = req.body.rhymingScheme;
         song.chords = req.body.chords;
+        song.songStateId = req.body.songStateId;
 
         return this.songDao.update(song)
             .then(this.common.editSuccess(res))
@@ -84,14 +85,15 @@ class SongController {
             song.songId = req.body.id;
         }
 
-        song.title = req.body.title,
-	song.themeId = req.body.themeId,
-        song.poeticReferencePicture = req.body.poeticReferencePicture,
-        song.songtext = req.body.songtext,
-        song.themeContentRelated = req.body.themeContentRelated,
-        song.themeDetailed = req.body.themeDetailed,
-        song.rhymingScheme = req.body.rhymingScheme,
-        song.chords = req.body.chords
+        song.title = req.body.title;
+	      song.themeId = req.body.themeId;
+        song.poeticReferencePicture = req.body.poeticReferencePicture;
+        song.songtext = req.body.songtext;
+        song.themeContentRelated = req.body.themeContentRelated;
+        song.themeDetailed = req.body.themeDetailed;
+        song.rhymingScheme = req.body.rhymingScheme;
+        song.chords = req.body.chords;
+        song.songStateId = req.body.songStateId;
 
         if (req.body.id) {
             return this.songDao.createWithId(song)
